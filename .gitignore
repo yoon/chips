@@ -19,3 +19,6 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
+testbed/log/*.log
+testbed/db/*
+testbed/.bundle
