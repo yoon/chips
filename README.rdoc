@@ -1,16 +1,31 @@
 = chips
 
-Description goes here.
+chips is a proof of concept: building a Rails 2.3 gem engine with test drive development (TDD) and a continuous integration (CI) server is possible. The gem will generate its own testbed app (in testbed) with bundler, Rails 2.3, rspec, and cucumber (with webrat). It overcomes a bundler/generator bug by coping in the generator to testbed/lib/generators as suggested by Rails own script/generate. For the generator copy strategy to work, all template files need to be contained within the generators directory. 
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+Why is it called chips? Because I got so frustrated with my previous testbed setup that I went and got a bag of chips. My first shot at this project was called dorito. Then, I abstracted the work to be generally applicable. So it is called chips.
+
+= Here's how I did it
+
+* Create a basic Jeweler gem
+<tt>jeweler chips; cd chips</tt>
+* Edit the Rakefile with description/summary then
+<tt>rake version:write</tt>
+* Create the Rails init (don't skip this step)
+<tt>mkdir -p rails testbed</tt><br/>
+<tt>touch rails/init.rb</tt>
+* Create the testbed Gemfile
+<tt>source :rubygems</tt><br/>
+<tt>...</tt><br/>
+<tt>gem 'chips', :path => ".."</tt>
+* install bundle, generate rails, rspec, cucumber, move the spec and features directories out of testbed into the parent dir.
+* change path in env.rb
+<tt>require File.expand_path(File.dirname(__FILE__) + '/../../testbed/config/environment')</tt>
+* and spec_helper.rb
+<tt>require File.expand_path(File.join(File.dirname(__FILE__),'..','testbed','config','environment'))</tt>
+* and create an init.rakefile that sets up and removes the testbed app (see init_testbed.rakefile)
+* setup .gitignore
+* remove everything but the Gemfile from the testbed directory, build the gem, and commit
+<tt>rake build</tt>
 
 == Copyright
 

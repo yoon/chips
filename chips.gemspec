@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mark Yoon"]
-  s.date = %q{2010-12-07}
+  s.date = %q{2010-12-08}
   s.description = %q{thinly sliced}
   s.email = %q{yoon@northwestern.edu}
   s.extra_rdoc_files = [
@@ -23,8 +23,22 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "app/controllers/chip_controller.rb",
+     "chips.gemspec",
+     "config/routes.rb",
+     "features/chip.feature",
+     "features/step_definitions/web_steps.rb",
+     "features/support/env.rb",
+     "features/support/paths.rb",
+     "generators/chips/chips_generator.rb",
+     "generators/chips/templates/README",
      "init_testbed.rakefile",
      "lib/chips.rb",
+     "rails/init.rb",
+     "spec/controllers/chip_controller_spec.rb",
+     "spec/rcov.opts",
+     "spec/spec.opts",
+     "spec/spec_helper.rb",
      "testbed/Gemfile"
   ]
   s.homepage = %q{http://github.com/yoon/chips}
@@ -32,6 +46,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{potato}
+  s.test_files = [
+    "spec/controllers/chip_controller_spec.rb",
+     "spec/spec_helper.rb"
+  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
