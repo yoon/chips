@@ -36,10 +36,12 @@ namespace "testbed" do
     end
   end
 
-  desc "Migrate testbed"
+  desc "Generate, migrate testbed"
   task :migrate do
+    sh "cp -R generators testbed/lib"
     chdir("testbed") do
-      sh "rake db:migrate db:test:prepare"
+      sh "bundle exec script/generate chips"
+      sh "bundle exec rake db:migrate db:test:prepare"
     end
   end
 
